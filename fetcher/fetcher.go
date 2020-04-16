@@ -19,11 +19,28 @@ import (
 )
 
 func Fetch(url string) ([]byte, error) {
-	resp, err := http.Get(url)
+	// 直接调用http.Get容易403 Forbidden
+	//resp, err := http.Get(url)
+	//if err != nil {
+	//	panic(err)
+	//}
+	//defer resp.Body.Close()
+
+	// 模拟浏览器发起请求
+	client := &http.Client{}
+	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
-		panic(err)
+		log.Fatalln(err)
+	}
+	// 这里是关键，模拟浏览器
+	req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36")
+
+	resp, err := client.Do(req)
+	if err != nil {
+		log.Fatalln(err)
 	}
 	defer resp.Body.Close()
+
 
 	if resp.StatusCode != http.StatusOK {
 		fmt.Println("Error: status code: ", resp.StatusCode)
