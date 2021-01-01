@@ -7,7 +7,7 @@
 package parser
 
 import (
-	"github.com/azd1997/go-crawler2/zhenai/engine"
+	"github.com/azd1997/go-crawler2/domain/zhenai/engine"
 	"log"
 	"regexp"
 )

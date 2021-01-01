@@ -12,7 +12,7 @@ import (
 )
 
 func Run(seeds ...Request) {
-	var requests []Request	// 请求队列
+	var requests []Request // 请求队列
 
 	for _, req := range seeds {
 		requests = append(requests, req)
@@ -23,13 +23,13 @@ func Run(seeds ...Request) {
 		requests = requests[1:]
 		log.Printf("Fetching %s\n", req.Url)
 
-		body, err := fetcher.Fetch(req.Url)
+		body, err := fetcher.Get(req.Url, fetcher.DefaultHeader)
 		if err != nil {
 			log.Printf("Fetcher: error " + "fetching url %s: %v", req.Url, err)
 			continue
 		}
 
-		parseResult := req.ParserFunc(body)		// 调用每个请求自定义的解析函数
+		parseResult := req.ParserFunc(body) // 调用每个请求自定义的解析函数
 		requests = append(requests, parseResult.Requests...)
 
 		for _, item := range parseResult.Items {
