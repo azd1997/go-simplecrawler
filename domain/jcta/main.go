@@ -21,7 +21,7 @@ import (
 
 
 const (
-	indexPage = "http://jcta.alljournals.ac.cn/cta_cn/ch/index.aspx?year_id=2020&quarter_id=11&Submit=提交"
+	indexPage = "http://jcta.alljournals.ac.cn/cta_cn/ch/index.aspx?year_id=2020&quarter_id=12&Submit=提交"
 	detailPagePrefix = "http://jcta.alljournals.ac.cn/cta_cn/ch/"
 	pdfPagePrefix = "http://jcta.alljournals.ac.cn/cta_cn/ch/reader/"
 	journal = "控制理论与应用"
